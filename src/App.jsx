@@ -168,11 +168,12 @@ function App() {
 
   const peopleTemplate = useMemo(() => {
     const row = {
+      leagueBranch: "第一团支部",
       name: "张三",
       stage: "高中",
-      groupName: "A组",
+      groupName: "A班",
+      studentId: "2026001",
       initialScore: 60,
-      note: "示例成员",
     };
 
     customPersonFields.forEach((field, index) => {
@@ -306,11 +307,12 @@ function App() {
 
     return {
       id: draft.id || createId("person"),
+      leagueBranch: String(draft.leagueBranch || "").trim(),
       name: String(draft.name || "").trim(),
       stage: String(draft.stage || "").trim(),
       groupName: String(draft.groupName || "").trim(),
+      studentId: String(draft.studentId || "").trim(),
       initialScore: toNumber(draft.initialScore),
-      note: String(draft.note || "").trim(),
       customFields,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -630,11 +632,12 @@ function App() {
       .map((row) => {
         const payload = {
           id: createId("person"),
+          leagueBranch: String(readRowValue(row, getFieldAliases("leagueBranch")) || "").trim(),
           name: String(readRowValue(row, getFieldAliases("name")) || "").trim(),
           stage: String(readRowValue(row, getFieldAliases("stage")) || "").trim(),
           groupName: String(readRowValue(row, getFieldAliases("groupName")) || "").trim(),
+          studentId: String(readRowValue(row, getFieldAliases("studentId")) || "").trim(),
           initialScore: toNumber(readRowValue(row, getFieldAliases("initialScore"))),
-          note: String(readRowValue(row, getFieldAliases("note")) || "").trim(),
           customFields: {},
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
@@ -695,11 +698,12 @@ function App() {
         if (!person) {
           person = {
             id: createId("person"),
+            leagueBranch: "",
             name: personName,
             stage: personStage,
             groupName: personGroup,
+            studentId: "",
             initialScore: 0,
-            note: "",
             customFields: customPersonFields.reduce((result, field) => {
               result[field.key] = "";
               return result;

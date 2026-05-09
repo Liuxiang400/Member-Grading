@@ -6,11 +6,11 @@ export function buildDemoStore(personFields = DEFAULT_PERSON_FIELDS) {
   const customFields = createEmptyCustomFields(normalizedFields);
 
   const people = [
-    { id: createId("person"), name: "张三", stage: "高中", groupName: "A组", initialScore: 60, note: "执行稳定" },
-    { id: createId("person"), name: "李四", stage: "高中", groupName: "B组", initialScore: 58, note: "需要提升提交率" },
-    { id: createId("person"), name: "王五", stage: "初中", groupName: "A组", initialScore: 55, note: "课堂表现积极" },
-    { id: createId("person"), name: "赵六", stage: "初中", groupName: "B组", initialScore: 57, note: "表现波动较大" },
-    { id: createId("person"), name: "陈晨", stage: "本科", groupName: "研修组", initialScore: 64, note: "项目能力强" },
+    { id: createId("person"), leagueBranch: "第一团支部", name: "张三", stage: "高中", studentId: "2026001", initialScore: 60 },
+    { id: createId("person"), leagueBranch: "第一团支部", name: "李四", stage: "高中", studentId: "2026002", initialScore: 58 },
+    { id: createId("person"), leagueBranch: "第二团支部", name: "王五", stage: "初中", studentId: "2026003", initialScore: 55 },
+    { id: createId("person"), leagueBranch: "第二团支部", name: "赵六", stage: "初中", studentId: "2026004", initialScore: 57 },
+    { id: createId("person"), leagueBranch: "第三团支部", name: "陈晨", stage: "本科", studentId: "2026005", initialScore: 64 },
   ].map((person) => ({
     ...person,
     customFields: { ...customFields },

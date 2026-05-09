@@ -1,9 +1,9 @@
 const DEFAULT_FIELDS = [
+  { key: "leagueBranch", label: "团支部", type: "text", system: true, required: false },
   { key: "name", label: "姓名", type: "text", system: true, required: true },
   { key: "stage", label: "学段", type: "text", system: true, required: false },
-  { key: "groupName", label: "小组名", type: "text", system: true, required: false },
-  { key: "initialScore", label: "初始分数", type: "number", system: true, required: false },
-  { key: "note", label: "备注", type: "text", system: true, required: false },
+  { key: "studentId", label: "学号", type: "text", system: true, required: false },
+  { key: "initialScore", label: "分数", type: "number", system: true, required: false },
 ];
 
 export const DEFAULT_PERSON_FIELDS = DEFAULT_FIELDS;
@@ -91,11 +91,11 @@ export function syncCustomFields(customFields, fields) {
 export function createPersonDraft(person, fields) {
   return {
     id: person?.id || "",
+    leagueBranch: person?.leagueBranch || "",
     name: person?.name || "",
     stage: person?.stage || "",
-    groupName: person?.groupName || "",
+    studentId: person?.studentId || "",
     initialScore: person?.initialScore ?? 0,
-    note: person?.note || "",
     customFields: syncCustomFields(person?.customFields, fields),
   };
 }
@@ -110,11 +110,11 @@ export function syncPersonDraftWithFields(draft, fields) {
 export function normalizePerson(person, fields) {
   return {
     ...person,
+    leagueBranch: String(person?.leagueBranch || ""),
     name: String(person?.name || ""),
     stage: String(person?.stage || ""),
-    groupName: String(person?.groupName || ""),
+    studentId: String(person?.studentId || ""),
     initialScore: Number.isFinite(Number(person?.initialScore)) ? Number(person.initialScore) : 0,
-    note: String(person?.note || ""),
     customFields: syncCustomFields(person?.customFields, fields),
   };
 }
